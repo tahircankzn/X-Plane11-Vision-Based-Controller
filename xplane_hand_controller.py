@@ -20,7 +20,7 @@ class XPlaneManualControl:
         """
         ctrl = [elevator, aileron, rudder, throttle]
         self.vehicle.sendCTRL(ctrl)
-        print(f"Kontroller gönderildi: Elevator={elevator}, Aileron={aileron}, Rudder={rudder}, Throttle={throttle}")
+        print(f"Controls sent: Elevator={elevator}, Aileron={aileron}, Rudder={rudder}, Throttle={throttle}")
 
 controller = XPlaneManualControl()
  
