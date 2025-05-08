@@ -34,7 +34,7 @@ Follow these steps to set up and run the project:
    python xplane_hand_controller.py
    ```
 ## Demo
-[![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/0.jpg)](https://youtu.be/mk37UO0KcNg)
+[![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/maxresdefault.jpg)](https://youtu.be/mk37UO0KcNg)
 
 ## Usage
 1. **Start the script**: Run the `xplane_hand_controller.py` file.
