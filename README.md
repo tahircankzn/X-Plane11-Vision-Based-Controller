@@ -37,7 +37,7 @@ Follow these steps to set up and run the project:
 [![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/maxresdefault.jpg)](https://youtu.be/mk37UO0KcNg)
 
 ## Usage
-1. **Start the script**: Run the `xplane_hand_controller.py.py` file.
+1. **Start the script**: Run the `xplane_hand_controller.py` file.
 2. **Place your hand in front of the camera**:
    - **Left hand**: Open your left hand to control **pitch** and **roll**.
    - **Right hand**: Open your right hand to control **throttle**.
@@ -48,16 +48,11 @@ Follow these steps to set up and run the project:
 - The **right hand** controls the **throttle** (engine power).
 - The script uses **MediaPipe** to detect hand landmarks and calculates control values based on the positions of the fingers.
 
-## File Structure
-- `xplane_hand_controller.py`: Main script for hand gesture detection and X-Plane control.
-- `README.md`: Documentation for the project.
-- `LICENSE`: License file for the project.
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
-- [MediaPipe](https://mediapipe.dev/) for hand tracking.
+- [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker?hl=tr) for hand tracking.
 - [XPlaneConnect](https://github.com/nasa/XPlaneConnect) for X-Plane communication.
 - [OpenCV](https://opencv.org/) for image processing.
 
