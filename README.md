@@ -7,9 +7,7 @@ Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çı
 
 * `cv2` – Görüntü işleme için OpenCV
 * `mediapipe` – El pozisyonu tespiti için
-* `math` – Öklidyen mesafe hesaplama
 * `xpc` – X-Plane uçuş kontrolü için Python Client
-
 
 ## Sistem Mimarisi
 
