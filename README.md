@@ -55,7 +55,7 @@ def Fist(fingers):
        return None
 ```
 
-**\[GÖRSEL: Sağ elde yumruk yapılmış hali]**
+![Yumruk Gösterimi](readme_images/Fist.png)
 
 ---
 
