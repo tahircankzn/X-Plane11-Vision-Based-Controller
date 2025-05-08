@@ -17,11 +17,6 @@ Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çı
 
 1. Mediapipe ile her iki elin 21 landmark (eklem) noktası alınır.
 2. Bu landmarklar her karede `(x, y)` koordinatına çevrilip bir `dict` yapısında saklanır:
-
-   ```python
-   left_landmarks = {0: (x0, y0), 1: (x1, y1), ..., 20: (x20, y20)}
-   right_landmarks = {...}
-   ```
 3. Sağ el için yumruk algılanarak uçuş başlatılır.
 4. Sağ elin orta parmağı ile bilek arasındaki mesafe kullanılarak throttle değeri hesaplanır.
 5. Sol elin orta parmak boğumunun pozisyonu ile pitch ve roll hesaplanır.
@@ -31,30 +26,31 @@ Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çı
 
 ## 1. Yumruk (Fist) Algılama
 
-Sağ eldeki dört parmak (işaret, orta, yüzük, serçe) uçlarının, alt boğumlarına olan mesafesi kontrol edilir. Eğer bu mesafeler bir eşikten küçükse parmak kapalı kabul edilir.
+Sağ eldeki orta parmağın ucu ile bilek mesafesi,
+orta parmağın alt boğum noktası ile bilek mesafesinden küçükse yumruk yapılmış sayılır.
 
 ```python
 def Fist(fingers):
 
     if fingers != None:
-      sum_top = 0
-      for i in ["middle_top"]:
-          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
-          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
+        sum_top = 0
+      
+        x_error = abs(fingers["middle_top"][0][0] - fingers["wrist"][0][0])
+        y_error = abs(fingers["middle_top"][0][1] - fingers["wrist"][0][1])
 
-          sum_top += ((x_error**2 + y_error**2)**(0.5))
+        sum_top += ((x_error**2 + y_error**2)**(0.5))
 
-      sum_bottom = 0
-      for i in ["middle_bottom"]: 
-          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
-          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
+        sum_bottom = 0
 
-          sum_bottom += ((x_error**2 + y_error**2)**(0.5))
+        x_error = abs(fingers["middle_bottom"][0][0] - fingers["wrist"][0][0])
+        y_error = abs(fingers["middle_bottom"][0][1] - fingers["wrist"][0][1])
 
-      if sum_bottom > sum_top:
-        return "Close"
-      else:
-        return "Open"
+        sum_bottom += ((x_error**2 + y_error**2)**(0.5))
+
+        if sum_bottom > sum_top:
+            return "Close"
+        else:
+            return "Open"
     else:
        return None
 ```
@@ -65,7 +61,8 @@ def Fist(fingers):
 
 ## 2. Throttle (Gaz) Hesaplama
 
-Sağ el açıkken, orta parmağın ucu ile bilek arasındaki mesafe ölçülerek normalize edilir. Bu değer `throttle` olarak kullanılır.
+Sağ el açık konumdayken, orta parmak ucu ile orta boğum arasındaki mesafe ölçülür. Bu mesafe, orta boğum ile bilek arasındaki mesafeye bölünerek normalize edilir. Ortaya çıkan oran throttle (gaz seviyesi) olarak kullanılır.
+Bu yöntemle parmak açıldıkça throttle artar, kapandıkça azalır.
 
 ```python
 def ThrottleRange(image , fingers):
@@ -88,15 +85,13 @@ def ThrottleRange(image , fingers):
        return None
 ```
 
-Bu değer `xpc.Client().sendCTRL()` fonksiyonu ile X-Plane’e aktarılır.
-
 ![Sağ el açık – throttle seviyesi gösterimi](readme_images/Throttle.png)
 
 ---
 
 ## 3. Pitch ve Roll Hesaplama
 
-Sol elin orta parmak alt boğumu (nokta 10), ekran merkezine göre yer değiştirmesiyle `pitch` ve `roll` kontrolü yapılır.
+Sol elin orta parmak alt boğumu (nokta 10), ekran ayarlanmış merkez noktasına göre yer değiştirmesiyle `pitch` ve `roll` kontrolü yapılır.
 
 ```python
 def Pitch_yaw(fingers):
@@ -116,17 +111,23 @@ def Pitch_yaw(fingers):
    return roll ,pitch
 ```
 
-Bu değerler throttle ile birlikte gönderilir:
-
-```python
-client.sendCTRL([roll, pitch, throttle, 0])
-```
-
 ![GÖRSEL: Sol el orta parmak hareketiyle pitch–roll kontrolü](readme_images/Pitch_Roll.png)
 
 ---
 
-## 4. Landmark Dönüşümü
+## 4. Hesaplana Değerlerin X-Plane 11 'e gönderilmesi
+Elde edilen Roll, Pitch ve Throttle değerleri, xpc (X-Plane Connect) kütüphanesi aracılığıyla X-Plane 11'e gönderilerek uçağın kontrol yüzeyleri gerçek zamanlı olarak kontrol edilir.
+
+```python
+controller.send_controls(
+            elevator = -1*(Roll / 250) , 
+            aileron = -1*(Pitch / 300),
+            throttle = Throttle , 
+            rudder = 0
+            )
+```
+
+## 5. Landmark Dönüşümü
 
 ![Sağ el açık – throttle seviyesi gösterimi](readme_images/Landmark.PNG)
 
