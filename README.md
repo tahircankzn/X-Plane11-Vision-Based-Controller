@@ -172,8 +172,6 @@ Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
 
 ---
 
-## Demo
-[![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/maxresdefault.jpg)](https://youtu.be/mk37UO0KcNg)
 
 ## Kurulum ve Çalıştırma
 
@@ -195,7 +193,7 @@ python main.py
 
 ## Örnek Kullanım Videosu ve Görseller
 
-**\[Buraya kontrol ekranından alınmış ekran görüntüleri veya videolar eklenecek]**
+[![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/maxresdefault.jpg)](https://youtu.be/mk37UO0KcNg)
 
 ---
 
