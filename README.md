@@ -49,7 +49,7 @@ Follow these steps to set up and run the project:
 - The script uses **MediaPipe** to detect hand landmarks and calculates control values based on the positions of the fingers.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
 ## Acknowledgments
 - [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker?hl=tr) for hand tracking.
