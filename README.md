@@ -33,10 +33,10 @@ Follow these steps to set up and run the project:
    ```bash
    python xplane_hand_controller.py
    ```
-
-## Usage
 ## Demo
 [![Watch the demo](https://img.youtube.com/vi/mk37UO0KcNg/0.jpg)](https://youtu.be/mk37UO0KcNg)
+
+## Usage
 1. **Start the script**: Run the `xplane_hand_controller.py` file.
 2. **Place your hand in front of the camera**:
    - **Left hand**: Open your left hand to control **pitch** and **roll**.
