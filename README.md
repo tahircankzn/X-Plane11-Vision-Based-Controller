@@ -131,12 +131,41 @@ client.sendCTRL([roll, pitch, throttle, 0])
 Mediapipe, her el için 21 adet landmark verir. Bunlar `(x, y)` olarak alınır ve `dict` içinde saklanır:
 
 ```python
-for i, lm in enumerate(handLms.landmark):
-    cx, cy = int(lm.x * width), int(lm.y * height)
-    if hand_label == "Left":
-        left_landmarks[i] = (lm.x, lm.y)
-    else:
-        right_landmarks[i] = (lm.x, lm.y)
+def FingerPoints(hand):
+
+    hand_index = hand.multi_hand_landmarks
+    hands = {"right":None,"left":None}
+    
+    for idx , hand_landmarks in enumerate(hand_index):
+        
+        try:
+          fingers = {
+                      "index_top": [None,8],
+                      "index_bottom": [None,5],
+                      "middle_top": [None,12],
+                      "middle_bottom": [None,9],
+                      "ring_top": [None,16],
+                      "ring_bottom": [None,13],
+                      "pinky_top": [None,20],
+                      "pinky_bottom": [None,17],
+                      "wrist" : [None,0]
+                      }
+          
+          for point in fingers.keys():
+             num = fingers[point][1]
+             landmark = (results.multi_hand_landmarks[idx].landmark[num].x,results.multi_hand_landmarks[idx].landmark[num].y)
+             landmark_xy = int(width * landmark[0]) , int(height * landmark[1])
+             fingers[point][0] = landmark_xy
+
+          if hand.multi_handedness[idx].classification[0].label == "Right":
+            hands["right"] = fingers
+          else:
+            hands["left"] = fingers
+
+        except:
+          pass
+        
+    return hands
 ```
 
 Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
