@@ -1,7 +1,6 @@
 import xpc
 import cv2
 import mediapipe as mp
-import math
 
 class XPlaneManualControl:
     """
@@ -78,24 +77,19 @@ def Fist(fingers):
     :return: "Close" if fist is detected, "Open" otherwise.
     """
     if fingers != None:
-      sum_top = 0
-      for i in ["middle_top"]:
-          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
-          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
+       
+        x_error = abs(fingers["middle_top"][0][0] - fingers["wrist"][0][0])
+        y_error = abs(fingers["middle_top"][0][1] - fingers["wrist"][0][1])
+        sum_top = ((x_error**2 + y_error**2)**(0.5))
 
-          sum_top += ((x_error**2 + y_error**2)**(0.5))
+        x_error = abs(fingers["middle_bottom"][0][0] - fingers["wrist"][0][0])
+        y_error = abs(fingers["middle_bottom"][0][1] - fingers["wrist"][0][1])
+        sum_bottom = ((x_error**2 + y_error**2)**(0.5))
 
-      sum_bottom = 0
-      for i in ["middle_bottom"]: 
-          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
-          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
-
-          sum_bottom += ((x_error**2 + y_error**2)**(0.5))
-
-      if sum_bottom > sum_top:
-        return "Close"
-      else:
-        return "Open"
+        if sum_bottom > sum_top:
+            return "Close"
+        else:
+            return "Open"
     else:
        return None
     
@@ -124,7 +118,7 @@ def ThrottleRange(image , fingers):
        return None
     
     
-def Pitch_yaw(fingers):
+def Pitch_Roll(fingers):
    """
     Calculates the pitch and yaw values based on finger positions.
     :param fingers: Dictionary containing finger positions.
@@ -156,6 +150,7 @@ with mp_hands.Hands(
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5) as hands:
   
+  
   while cap.isOpened():
     
     success, image = cap.read()
@@ -180,7 +175,7 @@ with mp_hands.Hands(
             pitch_roll_y = height // 2    
             size = 20    
             cv2.rectangle(image,(pitch_roll_x - size , pitch_roll_y - size),(pitch_roll_x + size ,pitch_roll_y + size),(255,0,0),2)
-            Pitch , Roll = Pitch_yaw(fingers_left)
+            Pitch , Roll = Pitch_Roll(fingers_left)
       except:
          Pitch , Roll = 0 , 0
 
@@ -203,7 +198,7 @@ with mp_hands.Hands(
             rudder = 0
             )
       
-      cv2.putText(image, f"Elavator {elevator1:.2} |  Aileron {aileron1:.2f} | Throttle {throttle1:.2f}", (100, 650), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
+      cv2.putText(image, f"Elevator {elevator1:.2} |  Aileron {aileron1:.2f} | Throttle {throttle1:.2f}", (100, 650), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
    
     image = cv2.resize(image, (width//2, height//2))
     cv2.imshow('MediaPipe X-Plane 11 Controller',image)
