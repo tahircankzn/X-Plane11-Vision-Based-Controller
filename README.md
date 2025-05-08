@@ -47,7 +47,7 @@ Follow these steps to set up and run the project:
 - The script uses **MediaPipe** to detect hand landmarks and calculates control values based on the positions of the fingers.
 
 ## File Structure
-- `visual_control_v3.py`: Main script for hand gesture detection and X-Plane control.
+- `xplane_hand_controller.py`: Main script for hand gesture detection and X-Plane control.
 - `README.md`: Documentation for the project.
 - `LICENSE`: License file for the project.
 
