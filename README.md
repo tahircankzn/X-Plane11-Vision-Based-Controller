@@ -94,7 +94,7 @@ def ThrottleRange(image , fingers):
 Sol elin orta parmak alt boğumu (nokta 10), ekran ayarlanmış merkez noktasına göre yer değiştirmesiyle `pitch` ve `roll` kontrolü yapılır.
 
 ```python
-def Pitch_yaw(fingers):
+def Pitch_roll(fingers):
 
    pitch_roll_x = width // 4
    pitch_roll_y = height // 2 
@@ -131,7 +131,7 @@ controller.send_controls(
 
 ![Sağ el açık – throttle seviyesi gösterimi](readme_images/Landmark.PNG)
 
-Mediapipe, her el için 21 adet landmark verir. Bunlar `(x, y)` olarak alınır ve `dict` içinde saklanır:
+Mediapipe, her el için indexlenmiş olarak 21 adet landmark verir. Bunlar `(x, y)` olarak alınır ve `dict` içinde saklanır:
 
 ```python
 def FingerPoints(hand):
