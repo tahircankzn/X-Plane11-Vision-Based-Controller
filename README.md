@@ -31,7 +31,7 @@ Follow these steps to set up and run the project:
 
 3. Run the script:
    ```bash
-   python visual_control_v3.py
+   python xplane_hand_controller.py
    ```
 
 ## Usage
