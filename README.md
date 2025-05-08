@@ -34,13 +34,29 @@ Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çı
 Sağ eldeki dört parmak (işaret, orta, yüzük, serçe) uçlarının, alt boğumlarına olan mesafesi kontrol edilir. Eğer bu mesafeler bir eşikten küçükse parmak kapalı kabul edilir.
 
 ```python
-def is_fist(right_landmarks):
-    tips = [8, 12, 16, 20]
-    lowers = [6, 10, 14, 18]
-    for tip, lower in zip(tips, lowers):
-        if calculate_distance(right_landmarks[tip], right_landmarks[lower]) > 0.05:
-            return False
-    return True
+def Fist(fingers):
+
+    if fingers != None:
+      sum_top = 0
+      for i in ["middle_top"]:
+          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
+          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
+
+          sum_top += ((x_error**2 + y_error**2)**(0.5))
+
+      sum_bottom = 0
+      for i in ["middle_bottom"]: 
+          x_error = abs(fingers[i][0][0] - fingers["wrist"][0][0])
+          y_error = abs(fingers[i][0][1] - fingers["wrist"][0][1])
+
+          sum_bottom += ((x_error**2 + y_error**2)**(0.5))
+
+      if sum_bottom > sum_top:
+        return "Close"
+      else:
+        return "Open"
+    else:
+       return None
 ```
 
 **\[GÖRSEL: Sağ elde yumruk yapılmış hali]**
@@ -83,13 +99,21 @@ Bu değer `xpc.Client().sendCTRL()` fonksiyonu ile X-Plane’e aktarılır.
 Sol elin orta parmak alt boğumu (nokta 10), ekran merkezine göre yer değiştirmesiyle `pitch` ve `roll` kontrolü yapılır.
 
 ```python
-ref_x, ref_y = 0.5, 0.5
-curr_x, curr_y = left_landmarks[10]
-dx = ref_x - curr_x
-dy = ref_y - curr_y
+def Pitch_yaw(fingers):
 
-roll = max(min(dx * 2, 1.0), -1.0)
-pitch = max(min(dy * 2, 1.0), -1.0)
+   pitch_roll_x = width // 4
+   pitch_roll_y = height // 2 
+
+   if fingers != None:
+      cv2.circle(image,(int(fingers["middle_bottom"][0][0]),int(fingers["middle_bottom"][0][1])),30,(255,0,0),3)
+      
+      roll = pitch_roll_x - fingers["middle_bottom"][0][0] 
+      pitch = pitch_roll_y - fingers["middle_bottom"][0][1]
+
+   else:
+        return None ,None
+
+   return roll ,pitch
 ```
 
 Bu değerler throttle ile birlikte gönderilir:
