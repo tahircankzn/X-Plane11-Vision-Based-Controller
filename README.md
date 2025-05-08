@@ -128,6 +128,8 @@ client.sendCTRL([roll, pitch, throttle, 0])
 
 ## 4. Landmark Dönüşümü
 
+![Sağ el açık – throttle seviyesi gösterimi](readme_images/Landmark.PNG)
+
 Mediapipe, her el için 21 adet landmark verir. Bunlar `(x, y)` olarak alınır ve `dict` içinde saklanır:
 
 ```python
