@@ -58,7 +58,7 @@ throttle = min(distance * 2.5, 1.0)
 
 Bu değer `xpc.Client().sendCTRL()` fonksiyonu ile X-Plane’e aktarılır.
 
-**\[GÖRSEL: Sağ el açık – throttle seviyesi gösterimi]**
+![Sağ el açık – throttle seviyesi gösterimi](readme_images/Throttle.png)
 
 ---
 
@@ -82,7 +82,7 @@ Bu değerler throttle ile birlikte gönderilir:
 client.sendCTRL([roll, pitch, throttle, 0])
 ```
 
-**\[GÖRSEL: Sol el orta parmak hareketiyle pitch–roll kontrolü]**
+![GÖRSEL: Sol el orta parmak hareketiyle pitch–roll kontrolü](readme_images/Pitch_Roll.png)
 
 ---
 
