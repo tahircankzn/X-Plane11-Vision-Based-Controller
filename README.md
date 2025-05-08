@@ -1,4 +1,4 @@
-```markdown
+
 # MediaPipe X-Plane 11 Controller
 
 This project uses **MediaPipe** to detect hand gestures and control the **X-Plane 11 flight simulator**. Hand gestures are mapped to flight controls such as throttle, elevator, and aileron, enabling intuitive and real-time control of the simulator.
@@ -22,7 +22,7 @@ Follow these steps to set up and run the project:
    ```bash
    git clone https://github.com/yourusername/mediapipe-xplane-controller.git
    cd mediapipe-xplane-controller
-   ```
+
 
 2. Install the required dependencies:
    ```bash
