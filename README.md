@@ -200,7 +200,5 @@ python main.py
 
 ## Notlar
 * test.py ile X-Plane 11 bağlantısı olmadan test edebilirsiniz
-* Pitch–Roll referans noktası ekran merkezidir.
-* Sağ el, sadece throttle ve kalkış tetiklemesi içindir.
-* Sol el ile uçuş yönü kontrol edilir.
+
 
