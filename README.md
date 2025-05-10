@@ -1,5 +1,5 @@
-
 # Hand Gesture Controlled Flight in X-Plane using Mediapipe
+For english explain [**Türkçe README**](./README.md)
 
 Bu proje, **Mediapipe** kullanarak el hareketlerinden anlam çıkarıp, **X-Plane 11** uçuş simülatörünü gerçek zamanlı olarak kontrol etmeyi amaçlamaktadır. Sağ el throttle ve uçuş başlatma için, sol el ise pitch ve roll kontrolü için kullanılır.
 
