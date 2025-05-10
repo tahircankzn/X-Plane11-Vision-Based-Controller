@@ -178,7 +178,8 @@ Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
 
 ### X-Plane 11 Bağlantısı
 
-![X-Plane 11 Data](readme_images/X-Plane_11_Data.png)
+![X-Plane 11 Data](<img src="readme_images/X-Plane_11_Data.png" alt="X-Plane 11 Data" width="800"/>)
+
 
 X-Plane 11’den telemetri paketlerinin alınabilmesi ve veri gönderilebilmesi için veri akışı aktif edilmelidir.
 X-Plane 11 → Ayarlar → Data Output menüsüne giderek Send output data seçeneğini aktif hale getirin.
