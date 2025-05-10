@@ -218,6 +218,6 @@ python main.py
 ---
 
 ## Notlar
-* test.py ile X-Plane 11 bağlantısı olmadan test edebilirsiniz
+X-Plane 11 bağlantısı olmadan test etmek için test.py dosyasını kullanabilirsiniz. Ayrıca, projelerinizi geliştirmek için hayal gücünüze bağlı olarak farklı kullanım senaryolarında da uygulayabilirsiniz.
 
 
