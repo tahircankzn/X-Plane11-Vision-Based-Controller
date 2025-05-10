@@ -178,9 +178,16 @@ Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
 
 ### X-Plane 11 Bağlantısı
 
-![X-Plane 11 Data](readme_images/X-Plane 11 Data.PNG)
+![X-Plane 11 Data](readme_images/X-Plane_11_Data.PNG)
 
-X-Plane 11 ile bağlantı kurabilmek ve telemetri paketlerinin alınması ve gönderilmesi 
+X-Plane 11’den telemetri paketlerinin alınabilmesi ve veri gönderilebilmesi için veri akışı aktif edilmelidir.
+X-Plane 11 → Ayarlar → Data Output menüsüne giderek Send output data seçeneğini aktif hale getirin.
+
+IP Adresi: 127.0.0.1
+
+Port: 49001
+
+Not: Bu ayarlar sayesinde Mission Planner gibi yer kontrol yazılımlarına da bağlantı sağlayabilirsiniz.
 
 ### Gereksinimler
 
