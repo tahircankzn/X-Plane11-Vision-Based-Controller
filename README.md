@@ -1,5 +1,5 @@
 # Mediapipe Kullanarak El Hareketleriyle X-Plane Uçuş Kontrolü
-For English explanation, please refer to the [**English README**](./README.md).
+For English explanation, please refer to the [**English README**](./README_english.md).
 
 Bu proje, **Mediapipe** kullanarak el hareketlerinden anlam çıkarıp, **X-Plane 11** uçuş simülatörünü gerçek zamanlı olarak kontrol etmeyi amaçlamaktadır. Sağ el throttle ve uçuş başlatma için, sol el ise pitch ve roll kontrolü için kullanılır.
 
