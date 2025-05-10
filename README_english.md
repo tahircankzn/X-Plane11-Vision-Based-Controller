@@ -216,10 +216,6 @@ python main.py
 ---
 
 ## Notes
+You can test without the X-Plane 11 connection using the test.py file. Additionally, you can apply this to different use cases depending on your imagination to develop your projects.
 
-* You can test without connecting to X-Plane 11 using the `test.py` script.
 
-```
-
-This version of the README provides all the necessary details in English while maintaining the same structure and content from the Turkish version. Let me know if you need any further adjustments!
-```
