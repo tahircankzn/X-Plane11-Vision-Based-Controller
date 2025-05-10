@@ -1,7 +1,7 @@
 
 # Hand Gesture Controlled Flight in X-Plane using Mediapipe
 
-Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çıkarıp, **X-Plane 11** uçuş simülatörünü kontrol etmeyi amaçlar. Sağ el ile throttle (gaz) kontrolü ve uçuş başlatma yapılırken, sol el ile pitch–roll (yani eğim ve yana yatış) kontrolü sağlanır.
+Bu proje, **Mediapipe** kullanarak el hareketlerinden anlam çıkarıp, **X-Plane 11** uçuş simülatörünü gerçek zamanlı olarak kontrol etmeyi amaçlamaktadır. Sağ el throttle ve uçuş başlatma için, sol el ise pitch ve roll kontrolü için kullanılır.
 
 ## Kullanılan Kütüphaneler
 
@@ -14,7 +14,7 @@ Bu proje, **Mediapipe** kullanarak ellerin konumundan ve hareketinden anlam çı
 ### Genel Akış
 
 1. Mediapipe ile her iki elin 21 landmark (eklem) noktası alınır.
-2. Bu landmarklar her karede `(x, y)` koordinatına çevrilip bir `dict` yapısında saklanır:
+2. Bu landmark'lar her karede `(x, y)` koordinatına çevrilip bir `dict` yapısında saklanır:
 3. Sağ el için yumruk algılanarak uçuş başlatılır.
 4. Sağ elin orta parmağı ile bilek arasındaki mesafe kullanılarak throttle değeri hesaplanır.
 5. Sol elin orta parmak boğumunun pozisyonu ile pitch ve roll hesaplanır.
@@ -89,7 +89,13 @@ def ThrottleRange(image , fingers):
 
 ## 3. Pitch ve Roll Hesaplama
 
-Sol elin orta parmak alt boğumu (nokta 10), ekran ayarlanmış merkez noktasına göre yer değiştirmesiyle `pitch` ve `roll` kontrolü yapılır.
+Sol elin orta parmak alt boğumu (landmark 10) referans alınır. Bu nokta, ekranın sol çeyrek merkezine göre konumlandırılır. Yani ekranın sol kısmında belirlenen bir sanal merkez noktaya göre hareket ettikçe:
+
+Yukarı/aşağı hareketi pitch (eğim)
+
+Sağa/sola hareketi roll (yana yatış)
+
+olarak değerlendirilir. Bu farklar ölçeklenerek X-Plane'e gönderilen kontrol girdilerine dönüştürülür.
 
 ```python
 def Pitch_roll(fingers):
@@ -113,8 +119,8 @@ def Pitch_roll(fingers):
 
 ---
 
-## 4. Hesaplana Değerlerin X-Plane 11 'e gönderilmesi
-Elde edilen Roll, Pitch ve Throttle değerleri, xpc (X-Plane Connect) kütüphanesi aracılığıyla X-Plane 11'e gönderilerek uçağın kontrol yüzeyleri gerçek zamanlı olarak kontrol edilir.
+## 4. Hesaplanan Değerlerin X-Plane 11 'e gönderilmesi
+Elde edilen Pitch, Roll, Throttle değerleri, xpc (X-Plane Connect) kütüphanesi aracılığıyla X-Plane 11'e gönderilerek uçağın kontrol yüzeyleri gerçek zamanlı olarak kontrol edilir.
 
 ```python
 controller.send_controls(
@@ -178,8 +184,7 @@ Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
 
 ### X-Plane 11 Bağlantısı
 
-![X-Plane 11 Data](<img src="readme_images/X-Plane_11_Data.png" alt="X-Plane 11 Data" width="800"/>)
-
+![X-Plane 11 Data](readme_images/X-Plane_11_Data.png)
 
 X-Plane 11’den telemetri paketlerinin alınabilmesi ve veri gönderilebilmesi için veri akışı aktif edilmelidir.
 X-Plane 11 → Ayarlar → Data Output menüsüne giderek Send output data seçeneğini aktif hale getirin.
