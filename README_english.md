@@ -1,6 +1,3 @@
-Here is the full English version of the README:
-
-````markdown
 # Hand Gesture Controlled Flight in X-Plane using Mediapipe
 
 For the Turkish explanation, please refer to the [**Türkçe README**](./README.md).
