@@ -176,6 +176,12 @@ Bu yapı sayesinde her landmark, indeks ile kolayca erişilebilir hale gelir.
 
 ## Kurulum ve Çalıştırma
 
+### X-Plane 11 Bağlantısı
+
+![X-Plane 11 Data](readme_images/X-Plane 11 Data.PNG)
+
+X-Plane 11 ile bağlantı kurabilmek ve telemetri paketlerinin alınması ve gönderilmesi 
+
 ### Gereksinimler
 
 ```bash
