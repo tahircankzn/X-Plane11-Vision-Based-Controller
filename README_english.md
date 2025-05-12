@@ -199,8 +199,6 @@ Note: These settings also allow you to connect to ground control software like M
 pip install opencv-python mediapipe
 ```
 
-Additionally, the [XPC Plugin](https://github.com/nasa/XPlaneConnect) must be installed and running on X-Plane 11.
-
 ### Running the Program
 
 ```bash
