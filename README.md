@@ -69,14 +69,14 @@ def ThrottleRange(image , fingers):
         y_error = abs(fingers["middle_top"][0][1] - fingers["middle_bottom"][0][1])
         x_error = abs(fingers["middle_top"][0][0] - fingers["middle_bottom"][0][0])
 
-        hata = ((x_error**2 + y_error**2)**(0.5))
+        error1 = ((x_error**2 + y_error**2)**(0.5))
 
         y_error1 = abs(fingers["middle_bottom"][0][1] - fingers["wrist"][0][1])
         x_error1 = abs(fingers["middle_bottom"][0][0] - fingers["wrist"][0][0])
 
-        hata1 = ((x_error1**2 + y_error1**2)**(0.5)) - 50
+        error2 = ((x_error1**2 + y_error1**2)**(0.5)) - 50
 
-        throttle = hata / hata1
+        throttle = error1 / error2
         cv2.putText(image, f"Throttle : {throttle:.2f}", (fingers["middle_bottom"][0][0] - 50, fingers["middle_bottom"][0][1] + 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
         return throttle
     else:
