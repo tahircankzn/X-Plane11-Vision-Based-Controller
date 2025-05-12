@@ -201,8 +201,6 @@ Not: Bu ayarlar sayesinde Mission Planner gibi yer kontrol yazılımlarına da b
 pip install opencv-python mediapipe
 ```
 
-Ayrıca, X-Plane 11’de [XPC Plugin](https://github.com/nasa/XPlaneConnect) kurulmuş ve çalışır durumda olmalıdır.
-
 ### Çalıştırma
 
 ```bash
