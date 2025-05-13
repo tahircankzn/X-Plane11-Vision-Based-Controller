@@ -89,7 +89,7 @@ def ThrottleRange(image , fingers):
 
 ## 3. Pitch ve Roll Hesaplama
 
-Sol elin orta parmak alt boğumu (landmark 10) referans alınır. Bu nokta, ekranın sol çeyrek merkezine göre konumlandırılır. Yani ekranın sol kısmında belirlenen bir sanal merkez noktaya göre hareket ettikçe:
+Sol elin orta parmak alt boğumu (landmark 9) referans alınır. Bu nokta, ekranın sol çeyrek merkezine göre konumlandırılır. Yani ekranın sol kısmında belirlenen bir sanal merkez noktaya göre hareket ettikçe:
 
 Yukarı/aşağı hareketi pitch (eğim)
 
