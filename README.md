@@ -8,6 +8,7 @@ Bu proje, **Mediapipe** kullanarak el hareketlerinden anlam çıkarıp, **X-Plan
 * `cv2` – Görüntü işleme için OpenCV
 * `mediapipe` – El pozisyonu tespiti için
 * `xpc` – X-Plane uçuş kontrolü için Python Client
+## Not : xpc için şu adrese bakınız : https://austinsnerdythings.com/2021/10/15/creating-an-autopilot-in-x-plane-using-python-part-1/
 
 ## Sistem Mimarisi
 
